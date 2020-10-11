@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.Activity2;
 
@@ -37,11 +38,15 @@ public class MainActivity extends AppCompatActivity {
     }
     private void Login (String UserName, String Password) {
         if ((UserName.equals( "Sean1" ) && (Password.equals( "1234" )))){
+            TextView TXT = (TextView) findViewById(R.id.textView2 );
             Intent intent = new Intent(MainActivity.this, Activity2.class );
             intent.putExtra( "UN", UserName );
             intent.putExtra( "PS", Password );
             startActivity( intent );
         }
-
+        else{
+            TextView TXT = (TextView) findViewById(R.id.textView2 );
+            TXT.setText( "Sorry User name or Password are Incorrect" );
+        }
     }
 }
