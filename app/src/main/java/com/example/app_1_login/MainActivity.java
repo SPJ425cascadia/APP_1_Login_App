@@ -2,51 +2,24 @@ package com.example.app_1_login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.Activity2;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Int vars
-    private EditText Name;
-    private EditText Password;
-    private Button Login;
+    private final String[] Languages = {"Seattle", "Bothell", "Kirkland", "Bellevue",
+            "Lynnwood", "Renton", "Redmond", "Spokane", "Vancouver",
+            "Tacoma", "Olympia", "Bellingham", "Arlington", "Everett",
+            "Woodinville", "Monroe", "New Castle", "Ballard", "Lacey", "duval"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-        Name = (EditText) findViewById( R.id.UsrName );
-        Password = (EditText) findViewById( R.id.Usrpass );
-        Login = (Button) findViewById( R.id.button1 );
-        String sentPSS = Password.getText().toString();
-        String sentUSR = Name.getText().toString();
-
-        Login.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Login(Name.getText().toString(),Password.getText().toString());
-            }
-        } );
-    }
-    private void Login (String UserName, String Password) {
-        if ((UserName.equals( "Sean1" ) && (Password.equals( "1234" )))){
-            TextView TXT = (TextView) findViewById(R.id.textView2 );
-            Intent intent = new Intent(MainActivity.this, Activity2.class );
-            intent.putExtra( "UN", UserName );
-            intent.putExtra( "PS", Password );
-            startActivity( intent );
-        }
-        else{
-            TextView TXT = (TextView) findViewById(R.id.textView2 );
-            TXT.setText( "Sorry User name or Password are Incorrect" );
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( this,R.layout.listview_layout,R.id.language, Languages);
+        ListView lv = findViewById( R.id.language_list );
+        lv.setAdapter( adapter );
     }
 }
